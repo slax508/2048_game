@@ -14,20 +14,24 @@ Ensure the following tools are installed and configured on your system:
 
 
 ### 1. Create a EC2
-Create a t2.micro EC2 instance and login into it by
+Create a t2.micro EC2 instance and login into EC2
+
+```bash
 ssh -i <keypair.pem> ubuntu@<publicip>
+```
+```bash
 sudo apt update
-Install prerequisites i.e AWScli, Kubectl, eksctl.
-''''bash
-awsconfigure
-''''''
-### 1. Configure AWS CLI
+```
+
+
+
+### 2. Configure AWS CLI
 Run the following command to configure AWS CLI with your account credentials:
 ```bash
 aws configure
 ```
 
-### 2. Create an EKS Cluster
+### 3. Create an EKS Cluster
 Use `eksctl` to create an EKS cluster:
 ```bash
 eksctl create cluster --name 2048-game-cluster --region <your-region> --nodes 2
