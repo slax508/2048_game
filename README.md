@@ -23,7 +23,15 @@ ssh -i <keypair.pem> ubuntu@<publicip>
 sudo apt update
 ```
 
+### 2. Install Prerequisites
+Install prerequisites i.e AWScli, Kubectl, eksctl by cloning the repositry 
+```bash
+git clone https://github.com/slax508/2048_game.git
+cd 2048_game
 
+chmod 700 prerequisites
+./prerequisites.sh
+```
 
 ### 2. Configure AWS CLI
 Run the following command to configure AWS CLI with your account credentials:
