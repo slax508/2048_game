@@ -48,6 +48,7 @@ eksctl create cluster --name 2048-game-cluster --region <your-region> --nodes 2
 ### 3. Install ArgoCD
 Install ArgoCD using the provided manifest:
 ```bash
+kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 
@@ -60,15 +61,30 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 ### 5. Deploy the 2048 Game
 Deploy the 2048 game using `kubectl` commands:
 ```bash
+kubectl apply -f 2048-namespace.yaml
 kubectl apply -f 2048-deployment.yaml
 kubectl apply -f 2048-service.yaml
+kubectl apply -f 2048-ingress.yaml
 ```
 
-### 6. Access the Game
+### 6. Access the Game by NodePort
 Once deployed, access the game using the external IP of the service:
 ```bash
-kubectl get svc
+kubectl get nodes -o wide 
+kubectl get svc -n game-2048
 ```
+Acess the game on external ip of the nodeport by port example:
+<nodeip:nodeportip>
+
+### 7. Access the Game by Loadbalancer 
+Once deployed, access the game using the external IP of the service:
+```bash
+kubectl get nodes -o wide 
+kubectl get svc -n game-2048
+```
+Acess the game on external ip of the nodeport by port example:
+<nodeip:nodeportip>
+
 
 ## Notes
 - Replace `<your-region>` with your desired AWS region.
